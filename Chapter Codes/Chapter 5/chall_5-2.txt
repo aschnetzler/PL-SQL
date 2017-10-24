@@ -1,0 +1,17 @@
+CREATE OR REPLACE PROCEDURE prodType_sp
+  (p_type IN OUT VARCHAR2)
+  IS
+BEGIN
+  IF p_type = 'C' THEN
+    p_type := 'Coffee';
+  ELSIF p_type = 'E' THEN
+    p_type := 'Equipment';
+  END IF;
+END;
+
+DECLARE
+   lv_type_txt VARCHAR2(20) := 'C';
+BEGIN
+   prodType_sp(lv_type_txt);
+   DBMS_OUTPUT.PUT_LINE(lv_type_txt);
+END;

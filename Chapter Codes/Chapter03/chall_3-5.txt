@@ -1,0 +1,27 @@
+DECLARE 
+ lv_sub_num bb_basket.subtotal%TYPE;
+ lv_state_txt bb_basket.shipstate%TYPE;
+ lv_tax_num NUMBER(4,2) := 0;	
+ lv_bask_num NUMBER(3) := 13;
+BEGIN
+ SELECT subtotal, shipstate
+  INTO lv_sub_num, lv_state_txt
+  FROM bb_basket
+  WHERE idbasket = lv_bask_num;
+  IF lv_state_txt = 'VA' THEN
+    lv_tax_num := lv_sub_num * .06;
+  ELSIF lv_state_txt = 'ME' THEN
+    lv_tax_num := lv_sub_num * .05;
+  ELSIF lv_state_txt = 'NY' THEN
+    lv_tax_num := lv_sub_num * .07;
+  ELSE
+    lv_tax_num := lv_sub_num * .04;
+  END IF;
+ DBMS_OUTPUT.PUT_LINE('State = '||lv_state_txt);
+ DBMS_OUTPUT.PUT_LINE('Subtotal = '||lv_sub_num);
+ DBMS_OUTPUT.PUT_LINE('Tax amount = '||lv_tax_num);
+ UPDATE bb_basket
+  SET tax = lv_tax_num
+  WHERE idbasket = lv_bask_num;
+ COMMIT;
+END;

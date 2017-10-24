@@ -1,0 +1,7 @@
+CREATE OR REPLACE PROCEDURE tc_test_sp1 IS
+BEGIN
+	INSERT INTO bb_test1
+	 VALUES (1);
+	tc_test_sp2();
+	COMMIT;
+END;

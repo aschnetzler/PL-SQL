@@ -1,0 +1,9 @@
+DECLARE
+ lv_one_num NUMBER(3) := 11;
+BEGIN
+ LOOP  
+  DBMS_OUTPUT.PUT_LINE(lv_one_num);
+  lv_one_num := lv_one_num - 2;
+  EXIT WHEN lv_one_num < 2;
+ END LOOP;
+END;

@@ -1,0 +1,11 @@
+BEGIN
+  UPDATE bb_shopper
+   SET zipcode = 67488
+   WHERE idshopper = 27;
+  IF SQL%ROWCOUNT > 0 THEN
+    DBMS_OUTPUT.PUT_LINE(SQL%ROWCOUNT||' rows updated');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('No rows changed');
+  END IF;
+END;
+

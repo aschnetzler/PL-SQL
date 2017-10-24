@@ -1,0 +1,21 @@
+DECLARE
+ lv_first_txt VARCHAR2(15) := 'Jeffrey';
+ lv_last_txt VARCHAR2(20) := 'Brand';
+ lv_email_txt VARCHAR2(25) := 'jbrand@site.com';
+BEGIN
+ INSERT INTO bb_shopper (idshopper, firstname, lastname, email)
+  VALUES (bb_shopper_seq.NEXTVAL,lv_first_txt,lv_last_txt,lv_email_txt);
+ COMMIT;
+END;
+
+SELECT idshopper, firstname, lastname, email
+  FROM bb_shopper
+  WHERE lastname = 'Brand';
+
+DECLARE
+  lv_id_num NUMBER(3) := 30;
+BEGIN
+  DELETE FROM bb_shopper
+   WHERE idshopper = lv_id_num;
+  COMMIT;
+END;

@@ -1,0 +1,15 @@
+DECLARE
+  CURSOR cur_bask IS
+    SELECT idbasket, dtcreated, quantity, subtotal
+     FROM bb_basket
+     WHERE idshopper = 26
+       AND orderplaced = 0;
+  lv_days_num NUMBER(3);
+BEGIN
+   FOR rec_bask IN cur_bask LOOP
+     lv_days_num := SYSDATE - rec_bask.dtcreated;
+     DBMS_OUTPUT.PUT_LINE(rec_bask.idbasket||' * '||rec_bask.dtcreated||' * '||
+                 rec_bask.quantity||' * '||rec_bask.subtotal||' * '||lv_days_num);
+  END LOOP;
+END;
+

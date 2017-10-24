@@ -1,0 +1,11 @@
+DECLARE
+  lv_card#_txt VARCHAR2(20);
+  lv_cardtype_txt CHAR(1);
+BEGIN
+  SELECT cardnumber, cardtype
+   INTO lv_card#_txt, lv_cardtype_txt
+   FROM bb_basket
+   WHERE idbasket = 10;
+  DBMS_OUTPUT.PUT_LINE('Card #: '||lv_card#_txt);
+  DBMS_OUTPUT.PUT_LINE('Card Type: '||lv_cardtype_txt);
+END;

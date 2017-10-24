@@ -1,0 +1,10 @@
+DECLARE
+ lv_billing_date DATE := '21-OCT-12';
+ lv_lastname_txt VARCHAR2(20);
+ lv_creditbal_num NUMBER(6,2) := 1000;
+BEGIN
+ lv_lastname_txt := 'Brown';
+ DBMS_OUTPUT.PUT_LINE(lv_billing_date);
+ DBMS_OUTPUT.PUT_LINE(lv_lastname_txt);
+ DBMS_OUTPUT.PUT_LINE(lv_creditbal_num);
+END;

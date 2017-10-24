@@ -1,0 +1,22 @@
+DECLARE
+  /* Define cursor to hold all active product type and price
+     to calculate and set sales prices */
+  CURSOR cur_prod IS
+    SELECT type, price
+    FROM bb_product
+    WHERE active = 1
+    FOR UPDATE NOWAIT;
+  lv_sale bb_product.saleprice%TYPE;
+BEGIN
+  FOR rec_prod IN cur_prod LOOP
+   --loop through all products and determine sales price
+   IF rec_prod.type = 'C' THEN lv_sale := rec_prod.price * .9; END IF;
+   IF rec_prod.type = 'E' THEN lv_sale := rec_prod.price * .95; END IF;
+   --update database for each product
+   UPDATE bb_product
+    SET saleprice = lv_sale
+    WHERE CURRENT OF cur_prod;
+  END LOOP;
+   --Permanently save all updates
+  COMMIT;
+END;

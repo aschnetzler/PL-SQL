@@ -1,0 +1,16 @@
+ERROR:
+ORA-02291: integrity constraint (ORA29.BSKTITEM_BSKTID_FK) violated - parent key not found 
+
+
+DECLARE
+  ex_id_fk EXCEPTION;
+  PRAGMA EXCEPTION_INIT(ex_id_fk, -2291);
+BEGIN
+  UPDATE bb_basketitem
+   SET idbasket = 99
+   WHERE idbasketitem = 38;
+EXCEPTION
+  WHEN ex_id_fk THEN
+   DBMS_OUTPUT.PUT_LINE('No basket with this id exists');
+END;
+

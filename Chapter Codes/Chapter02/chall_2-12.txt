@@ -1,0 +1,8 @@
+DECLARE
+ lv_one_num NUMBER(3) := 11;
+BEGIN
+ FOR i IN 1..5 LOOP
+  DBMS_OUTPUT.PUT_LINE(lv_one_num);
+  lv_one_num := lv_one_num - 2;
+ END LOOP;
+END;

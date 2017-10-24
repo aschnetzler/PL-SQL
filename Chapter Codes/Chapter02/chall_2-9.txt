@@ -1,0 +1,14 @@
+DECLARE
+ lv_promo_txt CHAR(1) := 'B';
+ lv_total_num NUMBER(6,2) := 100;
+ lv_disc_num NUMBER(5,2);
+BEGIN
+  lv_disc_num := CASE lv_promo_txt 
+   WHEN 'A' THEN lv_total_num * .05
+   WHEN 'B' THEN lv_total_num * .10
+   WHEN 'C' THEN lv_total_num * .15
+   ELSE lv_total_num * .02
+ END;
+ DBMS_OUTPUT.PUT_LINE(lv_disc_num);
+END;
+

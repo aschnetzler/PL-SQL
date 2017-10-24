@@ -1,0 +1,11 @@
+DECLARE
+  rec_baskitem bb_basketitem%ROWTYPE;
+  lv_item_num bb_basketitem.idbasketitem%TYPE := 15;
+BEGIN
+  SELECT *
+    INTO rec_baskitem
+    FROM bb_basketitem
+    WHERE idbasketitem = lv_item_num;
+  DBMS_OUTPUT.PUT_LINE(rec_baskitem.idproduct);
+  DBMS_OUTPUT.PUT_LINE(rec_baskitem.price);
+END;

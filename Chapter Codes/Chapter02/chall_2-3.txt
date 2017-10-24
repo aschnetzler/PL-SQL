@@ -1,0 +1,10 @@
+DECLARE
+ lv_promo_txt CHAR(6) := 'A0807X';
+ lv_mth_txt CHAR(2);
+ lv_year_txt CHAR(2);
+BEGIN
+ lv_mth_txt := SUBSTR(lv_promo_txt,2,2);
+ lv_year_txt := SUBSTR(lv_promo_txt,4,2);
+ DBMS_OUTPUT.PUT_LINE(lv_mth_txt);
+ DBMS_OUTPUT.PUT_LINE(lv_year_txt);
+END;

@@ -1,0 +1,25 @@
+DECLARE
+  CURSOR cur_bask IS
+    SELECT idbasket, dtcreated, quantity, subtotal
+     FROM bb_basket
+     WHERE idshopper = 26
+       AND orderplaced = 0;
+  TYPE type_bask IS RECORD (
+    id bb_basket.idbasket%TYPE,
+    dtcrt bb_basket.dtcreated%TYPE,
+    qty bb_basket.quantity%TYPE,
+    sub bb_basket.subtotal%TYPE );
+  rec_bask type_bask;
+  lv_days_num NUMBER(3);
+BEGIN
+  OPEN cur_bask;
+  LOOP
+    FETCH cur_bask INTO rec_bask;
+     EXIT WHEN cur_bask%NOTFOUND;
+     lv_days_num := SYSDATE - rec_bask.dtcrt;
+     DBMS_OUTPUT.PUT_LINE(rec_bask.id||' * '||rec_bask.dtcrt||' * '||
+                 rec_bask.qty||' * '||rec_bask.sub||' * '||lv_days_num);
+  END LOOP;
+  CLOSE cur_bask;
+END;
+

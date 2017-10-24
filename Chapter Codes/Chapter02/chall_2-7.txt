@@ -1,0 +1,15 @@
+DECLARE
+ lv_promo_txt CHAR(1) := 'B';
+ lv_total_num NUMBER(6,2) := 100;
+ lv_disc_num NUMBER(5,2) := 0;
+BEGIN
+ IF lv_promo_txt IN('A','E') THEN
+   lv_disc_num := lv_total_num * .05;
+ ELSIF lv_promo_txt IN('B','C') THEN
+   lv_disc_num := lv_total_num * .10;
+ ELSIF lv_promo_txt = 'D' THEN
+   lv_disc_num := lv_total_num * .15;
+ END IF;
+ DBMS_OUTPUT.PUT_LINE(lv_disc_num);
+END;
+

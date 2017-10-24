@@ -1,0 +1,28 @@
+DECLARE
+ lv_news_txt CHAR(1) NOT NULL := 'Y';
+ lv_balance_num NUMBER(6,2) := 1200;
+ lv_rate_num CONSTANT NUMBER(2,2) := .05;
+ lv_minpay_num NUMBER(6,2);
+BEGIN
+ lv_minpay_num := lv_balance_num * lv_rate_num;
+ lv_news_txt := 'N';
+ DBMS_OUTPUT.PUT_LINE(lv_news_txt);
+ DBMS_OUTPUT.PUT_LINE(lv_balance_num);
+ DBMS_OUTPUT.PUT_LINE(lv_rate_num);
+ DBMS_OUTPUT.PUT_LINE(lv_minpay_num);
+END;
+
+DECLARE
+ lv_news_txt CHAR(1) NOT NULL := 'Y';
+ lv_balance_num NUMBER(6,2) := 1200;
+ lv_rate_num CONSTANT NUMBER(2,2) := .05;
+ lv_minpay_num NUMBER(6,2);
+BEGIN
+ lv_rate_num := .07;
+ lv_minpay_num := lv_balance_num * lv_rate_num;
+ lv_news_txt := 'N';
+ DBMS_OUTPUT.PUT_LINE(lv_news_txt);
+ DBMS_OUTPUT.PUT_LINE(lv_balance_num);
+ DBMS_OUTPUT.PUT_LINE(lv_rate_num);
+ DBMS_OUTPUT.PUT_LINE(lv_minpay_num);
+END;

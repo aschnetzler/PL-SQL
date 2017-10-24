@@ -1,0 +1,19 @@
+DECLARE
+  lv_cardtype_txt bb_basket.cardtype%TYPE;
+  lv_bask_num NUMBER(3) := 10;
+BEGIN
+  SELECT cardtype
+   INTO lv_cardtype_txt
+   FROM bb_basket
+   WHERE idbasket = lv_bask_num;
+  CASE lv_cardtype_txt 
+    WHEN 'V' THEN
+      DBMS_OUTPUT.PUT_LINE('Shopper used credit card type of Visa');
+    WHEN 'X' THEN
+      DBMS_OUTPUT.PUT_LINE('Shopper used credit card type of Amerian Express');
+    WHEN 'M' THEN
+      DBMS_OUTPUT.PUT_LINE('Shopper used credit card type of Master Card');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('No credit card type indicated');
+  END CASE;
+END;
