@@ -122,4 +122,32 @@
 		END;
 --Question 5
 	--PROCEDURE
+		CREATE OR REPLACE PROCEDURE CURRENCYTOCOUNTRY
+		 (p_currency IN  currencies.currency_name%TYPE)
+		IS   
+			CURSOR country IS 
+			   SELECT country_name
+				 FROM countries JOIN Currencies USING(currency_code)
+				 WHERE UPPER(p_currency) = UPPER(currency_name);
+		   lv_name country%ROWTYPE;
+		BEGIN 
+			open country;
+			LOOP
+				fetch country into lv_name;
+				IF country%Rowcount >= 1 THEN
+				 dbms_output.put_line(lv_name.country_name);
+				 ELSE 	DBMS_OUTPUT.PUT_LINE('Sorry, there is no country that uses that type of currency');
+				END IF;
+				exit when country%NOTFOUND;    
+				END LOOP;
+		close country;
+				
+		END CURRENCYTOCOUNTRY;
 	--ANON BLOCK
+		DECLARE
+			lv_currency currencies.currency_name%TYPE := '&Currency';   
+		BEGIN
+            DBMS_OUTPUT.Put_Line('Countries that use that form of currency are:');
+            DBMS_OUTPUT.Put_Line('**********************************************************');
+			CURRENCYTOCOUNTRY(lv_currency);
+		END;
